@@ -13,7 +13,7 @@ export class FinancialHistory{
     @Column()
     amount: number;
 
-    @Column('datetime')
+    @Column()
     date: Date;
 
     @ManyToOne(() => User, user => user.financialHistory)

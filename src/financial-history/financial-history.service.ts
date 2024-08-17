@@ -10,9 +10,9 @@ export class FinancialHistoryService {
     constructor(@InjectRepository(FinancialHistory) private readonly financialHistoryRepository: Repository<FinancialHistory>){}
 
     async create(createFinancialHistory: CreateFinancialHistoryDto): Promise<FinancialHistory>{
-        const newUser = this.financialHistoryRepository.create(createFinancialHistory);
         try {
-            return await this.financialHistoryRepository.save(newUser);      
+            const newFinancialHistory = this.financialHistoryRepository.create(createFinancialHistory);
+            return await this.financialHistoryRepository.save(newFinancialHistory);      
         } catch (error) {
             throw error;
         }
