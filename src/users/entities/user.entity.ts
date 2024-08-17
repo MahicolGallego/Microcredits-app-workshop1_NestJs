@@ -9,12 +9,9 @@ export class User {
     id: number
 
     @Column()
-    @IsString()
-    @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
     name: String
 
     @Column()
-    @IsInt()
     credit_score: number;
 
     @OneToMany(() => FinancialHistory, financialHistory => financialHistory.user)

@@ -45,6 +45,14 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Environment variables
+
+- DATABASE_HOST=
+- DATABASE_PORT=
+- DATABASE_USER=
+- DATABASE_PASSWORD=
+- DATABASE_NAME=
+
 ## Test
 
 ```bash

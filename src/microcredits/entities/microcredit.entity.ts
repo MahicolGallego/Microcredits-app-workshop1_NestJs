@@ -8,15 +8,12 @@ export class Microcredit {
     id: number;
 
     @Column()
-    @IsInt()
     amount: number;
 
     @Column()
-    @IsInt()
     interest_rate: number;
 
     @Column()
-    @IsString()
     status: string;
 
     @ManyToOne(() => User, user => user.microcredits)

@@ -8,19 +8,25 @@ import { MicrocreditModule } from './microcredits/microcredits.module';
 import { Microcredit } from './microcredits/entities/microcredit.entity';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpErrorFilter } from './expections-filters/exception-http.filter';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { config } from 'process';
 
 
-@Module({
-  imports: [TypeOrmModule.forRoot({
-    type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "Rlwl2023.",
-    database: "microcredits_app",
-    entities: [User, FinancialHistory, Microcredit],
-    // autoLoadEntities: true,
-    synchronize: true,
+@Module({ 
+  imports: [ConfigModule.forRoot(), TypeOrmModule.forRootAsync({
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: (configService: ConfigService) => ({
+      type: "mysql",
+      host: configService.get<string>('DATABASE_HOST'),
+      port: configService.get<number>('DATABASE_PORT'),
+      username: configService.get<string>('DATABASE_USER'),
+      password: configService.get<string>('DATABASE_PASSWORD'),
+      database: configService.get<string>('DATABASE_NAME'),
+      entities: [User, FinancialHistory, Microcredit],
+      // autoLoadEntities: true,
+      synchronize: true,
+    })
   }),
     UsersModule, FinancialHistoryModule, MicrocreditModule],
     providers: [{

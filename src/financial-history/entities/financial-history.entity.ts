@@ -8,15 +8,12 @@ export class FinancialHistory{
     id: number;
 
     @Column()
-    @IsString()
     description: string;
 
     @Column()
-    @IsInt()
     amount: number;
 
     @Column('datetime')
-    @IsDate()
     date: Date;
 
     @ManyToOne(() => User, user => user.financialHistory)
